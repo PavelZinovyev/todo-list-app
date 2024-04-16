@@ -1,0 +1,54 @@
+.main {
+  height: 100vh;
+  background-color: #111111;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar_desktop {
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #111111;
+  margin-left: auto;
+  margin-right: auto;
+
+  a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: whitesmoke;
+  }
+}
+
+.navbar_mobile {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  background-color: #111111;
+  padding-bottom: 1rem;
+  height: 5rem;
+  bottom: 0;
+  width: 100%;
+
+  a {
+    text-decoration: none;
+    color: #666666;
+
+    &[aria-current='page'] {
+      .icon {
+        fill: #cbff10;
+        stroke: #cbff10;
+      }
+
+      span {
+        color: #cbff10;
+      }
+    }
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+  }
+}

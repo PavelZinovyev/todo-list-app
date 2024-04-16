@@ -1,61 +1,35 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Tasks from './assets/components/pages/tasks/Tasks';
-import Layout from './assets/components/Layout/Layout';
-import NotFound from './assets/components/pages/NotFound/NotFound';
-import CreateTask from './assets/components/pages/CreateTask/CreateTask';
-import History from './assets/components/pages/History/History';
-import { useState } from 'react';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-interface ITodoItem {
-  id: number;
-  title: string;
-  isCompleted: boolean;
-}
-
-const initialTodoList: Array<ITodoItem> = [
-  {
-    id: 0,
-    title: 'Team meeting',
-    isCompleted: false,
-  },
-  {
-    id: 1,
-    title: 'Make a service schedule',
-    isCompleted: false,
-  },
-  {
-    id: 2,
-    title: 'Buy flowers for mom',
-    isCompleted: false,
-  },
-];
-
-const App = () => {
-  const [todo, setTodos] = useState(initialTodoList);
-
-  const handleAddTodo = (title: string) => {
-    setTodos((prev) => [
-      ...prev,
-      {
-        id: Math.random(),
-        title,
-        isCompleted: false,
-      },
-    ]);
-  };
+function App() {
+  const [count, setCount] = useState(0)
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Tasks todosData={todo} />} />
-          <Route path="create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
-          <Route path="history" element={<History />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
-};
+    <>
+      <div>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
 
-export default App;
+export default App

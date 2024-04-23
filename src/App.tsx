@@ -33,8 +33,6 @@ const initialTodoList: Array<ITodoItem> = [
 const App = () => {
   const [todo, setTodos] = useState(initialTodoList);
 
-  console.log('process.env.NODE_ENV->', process.env.NODE_ENV);
-
   const handleAddTodo = (title: string) => {
     setTodos((prev) => [
       ...prev,

@@ -52,8 +52,12 @@ const App = () => {
           element={<Layout />}
         >
           <Route index element={<Tasks todosData={todo} />} />
-          <Route path="/create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/todo-list-app/tasks" element={<Tasks todosData={todo} />} />
+          <Route
+            path="/todo-list-app/create-task"
+            element={<CreateTask onAddTodo={handleAddTodo} />}
+          />
+          <Route path="/todo-list-app/history" element={<History />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

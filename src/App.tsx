@@ -33,8 +33,6 @@ const initialTodoList: Array<ITodoItem> = [
 const App = () => {
   const [todo, setTodos] = useState(initialTodoList);
 
-  console.log('process.env.NODE_ENV-->', process.env.NODE_ENV);
-
   const handleAddTodo = (title: string) => {
     setTodos((prev) => [
       ...prev,
@@ -54,8 +52,8 @@ const App = () => {
           element={<Layout />}
         >
           <Route index element={<Tasks todosData={todo} />} />
-          <Route path="create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
-          <Route path="history" element={<History />} />
+          <Route path="/create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
+          <Route path="/history" element={<History />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

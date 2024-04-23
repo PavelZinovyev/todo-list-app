@@ -2,7 +2,7 @@ import styles from './todoItem.module.scss';
 import cn from 'classnames';
 import Check from './Check';
 import { FC } from 'react';
-import { HiOutlineTrash } from 'react-icons/hi2';
+import { BsTrash3 } from 'react-icons/bs';
 
 interface ITodo {
   id: number;
@@ -26,11 +26,11 @@ const TodoItem: FC<ITodoItemProps> = ({ todo, onRemoveTodo, onChangeTodo }) => {
         </span>
       </button>
       <button>
-        <HiOutlineTrash
+        <BsTrash3
           onClick={() => onRemoveTodo(todo.id)}
           size={22}
           className={styles.trash}
-        ></HiOutlineTrash>
+        ></BsTrash3>
       </button>
     </div>
   );

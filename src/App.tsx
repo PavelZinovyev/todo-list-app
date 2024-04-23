@@ -47,7 +47,10 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path={`${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`}
+          element={<Layout />}
+        >
           <Route index element={<Tasks todosData={todo} />} />
           <Route path="create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
           <Route path="history" element={<History />} />

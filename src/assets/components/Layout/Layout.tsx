@@ -17,7 +17,7 @@ const Layout = () => {
       <>
         {isMobile ? (
           <nav className={styles.navbar_mobile}>
-            <NavLink to={'/tasks'}>
+            <NavLink to={'/'}>
               <div className={styles.navbar_mobile_item}>
                 <FaTasks size={iconSize} className={styles.icon} />
                 <span>Tasks</span>
@@ -38,7 +38,7 @@ const Layout = () => {
           </nav>
         ) : (
           <nav className={styles.navbar_desktop}>
-            <NavLink to={'/tasks'}>Tasks</NavLink>
+            <NavLink to={'/'}>Tasks</NavLink>
             <NavLink to={'/create-task'}>Create task</NavLink>
             <NavLink to={'/history'}>History</NavLink>
           </nav>

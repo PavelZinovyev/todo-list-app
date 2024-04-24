@@ -48,7 +48,6 @@ const App = () => {
     <Router>
       <Routes>
         <Route
-          path={`${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`}
           element={<Layout />}
         >
           <Route index element={<Tasks todosData={todo} />} />

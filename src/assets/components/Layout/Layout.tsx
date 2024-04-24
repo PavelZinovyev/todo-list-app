@@ -17,19 +17,19 @@ const Layout = () => {
       <>
         {isMobile ? (
           <nav className={styles.navbar_mobile}>
-            <NavLink to={'/todo-list-app/tasks'}>
+            <NavLink to={'/'}>
               <div className={styles.navbar_mobile_item}>
                 <FaTasks size={iconSize} className={styles.icon} />
                 <span>Tasks</span>
               </div>
             </NavLink>
-            <NavLink to={'/todo-list-app/create-task'}>
+            <NavLink to={'/create-task'}>
               <div className={styles.navbar_mobile_item}>
                 <IoAddCircle size={iconSize} className={styles.icon} />
                 <span>Create task</span>
               </div>
             </NavLink>
-            <NavLink to={'/todo-list-app/history'}>
+            <NavLink to={'/history'}>
               <div className={styles.navbar_mobile_item}>
                 <FaFolderClosed size={iconSize} className={styles.icon} />
                 <span>History</span>
@@ -38,9 +38,9 @@ const Layout = () => {
           </nav>
         ) : (
           <nav className={styles.navbar_desktop}>
-            <NavLink to={'/todo-list-app/tasks'}>Tasks</NavLink>
-            <NavLink to={'/todo-list-app/create-task'}>Create task</NavLink>
-            <NavLink to={'/todo-list-app/history'}>History</NavLink>
+            <NavLink to={'/'}>Tasks</NavLink>
+            <NavLink to={'/create-task'}>Create task</NavLink>
+            <NavLink to={'/history'}>History</NavLink>
           </nav>
         )}
       </>

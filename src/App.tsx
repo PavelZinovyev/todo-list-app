@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as HashRouter, Route, Routes } from 'react-router-dom';
 import Tasks from './assets/components/pages/tasks/Tasks';
 import Layout from './assets/components/Layout/Layout';
 import NotFound from './assets/components/pages/NotFound/NotFound';
@@ -45,18 +45,16 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <HashRouter>
       <Routes>
-        <Route
-          element={<Layout />}
-        >
+        <Route element={<Layout />}>
           <Route index element={<Tasks todosData={todo} />} />
           <Route path="create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
           <Route path="history" element={<History />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </Router>
+    </HashRouter>
   );
 };
 

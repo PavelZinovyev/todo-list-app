@@ -30,6 +30,8 @@ const initialTodoList: Array<ITodoItem> = [
   },
 ];
 
+const rootUrl = `${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`;
+
 const App = () => {
   const [todo, setTodos] = useState(initialTodoList);
 
@@ -47,13 +49,15 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route
-          path={`${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`}
-          element={<Layout />}
-        >
+        <Route element={<Layout />}>
           <Route index element={<Tasks todosData={todo} />} />
-          <Route path="create-task" element={<CreateTask onAddTodo={handleAddTodo} />} />
-          <Route path="history" element={<History />} />
+          <Route path={`${rootUrl}tasks`} element={<Tasks todosData={todo} />} />
+
+          <Route
+            path={`${rootUrl}create-task`}
+            element={<CreateTask onAddTodo={handleAddTodo} />}
+          />
+          <Route path={`${rootUrl}history`} element={<History />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

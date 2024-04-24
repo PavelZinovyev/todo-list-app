@@ -12,24 +12,26 @@ const Layout = () => {
 
   const iconSize = 50;
 
+  const rootUrl = `${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`;
+
   return (
     <>
       <>
         {isMobile ? (
           <nav className={styles.navbar_mobile}>
-            <NavLink to={'/'}>
+            <NavLink to={`${rootUrl}tasks`}>
               <div className={styles.navbar_mobile_item}>
                 <FaTasks size={iconSize} className={styles.icon} />
                 <span>Tasks</span>
               </div>
             </NavLink>
-            <NavLink to={'/create-task'}>
+            <NavLink to={`${rootUrl}create-task`}>
               <div className={styles.navbar_mobile_item}>
                 <IoAddCircle size={iconSize} className={styles.icon} />
                 <span>Create task</span>
               </div>
             </NavLink>
-            <NavLink to={'/history'}>
+            <NavLink to={`${rootUrl}history`}>
               <div className={styles.navbar_mobile_item}>
                 <FaFolderClosed size={iconSize} className={styles.icon} />
                 <span>History</span>
@@ -38,9 +40,9 @@ const Layout = () => {
           </nav>
         ) : (
           <nav className={styles.navbar_desktop}>
-            <NavLink to={'/'}>Tasks</NavLink>
-            <NavLink to={'/create-task'}>Create task</NavLink>
-            <NavLink to={'/history'}>History</NavLink>
+            <NavLink to={`${rootUrl}tasks`}>Tasks</NavLink>
+            <NavLink to={`${rootUrl}create-task`}>Create task</NavLink>
+            <NavLink to={`${rootUrl}history`}>History</NavLink>
           </nav>
         )}
       </>

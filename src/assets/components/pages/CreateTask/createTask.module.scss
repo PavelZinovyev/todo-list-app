@@ -46,3 +46,15 @@
     color: white;
   }
 }
+
+.error_text {
+  position: absolute;
+  color: #fca5a5;
+  display: none;
+  margin-top: 4rem;
+  margin-left: 2rem;
+
+  &_visible {
+    display: block;
+  }
+}

@@ -2,26 +2,53 @@ import styles from './createTask.module.scss';
 import { useState, FC } from 'react';
 import cn from 'classnames';
 
+interface ITodo {
+  id: number;
+  title: string;
+  isCompleted: boolean;
+}
+
 interface AddTodo {
   onAddTodo: (title: string) => void;
 }
 
-const CreateTask: FC<AddTodo> = ({ onAddTodo }) => {
+interface ITaskProps extends AddTodo {
+  todosData: ITodo[];
+}
+
+const CreateTask: FC<ITaskProps> = ({ onAddTodo, todosData }) => {
   const [title, setTitle] = useState('');
+  const [error, setError] = useState(false);
 
   const fromattedTitle = title.trimStart();
 
   const handleEnterSetTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && fromattedTitle.length > 0) {
-      onAddTodo(fromattedTitle);
-      setTitle('');
+      const isTitleExist = todosData.find((todo) => todo.title === fromattedTitle);
+
+      if (isTitleExist) {
+        console.log('this title already exist, type another title');
+        setError(true);
+      } else {
+        if (error) setError(false);
+        onAddTodo(fromattedTitle);
+        setTitle('');
+      }
     }
   };
 
   const handleClickSetTodo = () => {
     if (fromattedTitle.length > 0) {
-      onAddTodo(fromattedTitle);
-      setTitle('');
+      const isTitleExist = todosData.find((todo) => todo.title === fromattedTitle);
+
+      if (isTitleExist) {
+        console.log('this title already exist, type another title');
+        setError(true);
+      } else {
+        if (error) setError(false);
+        onAddTodo(fromattedTitle);
+        setTitle('');
+      }
     }
   };
 
@@ -31,7 +58,10 @@ const CreateTask: FC<AddTodo> = ({ onAddTodo }) => {
         <input
           placeholder="Add a task"
           value={fromattedTitle}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+            setError(false);
+          }}
           onKeyPress={(e) => {
             handleEnterSetTodo(e);
           }}
@@ -45,6 +75,13 @@ const CreateTask: FC<AddTodo> = ({ onAddTodo }) => {
       >
         <span>Create</span>
       </button>
+      <span
+        className={cn(styles.error_text, {
+          [styles['error_text_visible']]: error,
+        })}
+      >
+        This note already exists
+      </span>
     </div>
   );
 };

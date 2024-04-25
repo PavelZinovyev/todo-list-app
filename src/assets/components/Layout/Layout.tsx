@@ -12,7 +12,7 @@ const Layout = () => {
 
   const iconSize = 50;
 
-  const rootUrl = `${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`;
+  const rootUrl = `${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`; // gh-pages hack
 
   return (
     <>

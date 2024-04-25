@@ -30,7 +30,7 @@ const initialTodoList: Array<ITodoItem> = [
   },
 ];
 
-const rootUrl = `${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`;
+const rootUrl = `${process.env.NODE_ENV === 'production' ? '/todo-list-app/' : '/'}`; // gh-pages hack
 
 const App = () => {
   const [todo, setTodos] = useState(initialTodoList);
@@ -55,7 +55,7 @@ const App = () => {
 
           <Route
             path={`${rootUrl}create-task`}
-            element={<CreateTask onAddTodo={handleAddTodo} />}
+            element={<CreateTask onAddTodo={handleAddTodo} todosData={todo} />}
           />
           <Route path={`${rootUrl}history`} element={<History />} />
           <Route path="*" element={<NotFound />} />

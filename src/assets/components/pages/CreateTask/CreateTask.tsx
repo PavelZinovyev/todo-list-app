@@ -16,7 +16,7 @@ interface ITaskProps extends AddTodo {
   todosData: ITodo[];
 }
 
-const CreateTask: FC<ITaskProps> = ({ onAddTodo, todosData }) => {
+const CreateTask: FC<ITaskProps> = ({ todosData, onAddTodo }) => {
   const [title, setTitle] = useState('');
   const [error, setError] = useState(false);
 
@@ -27,7 +27,6 @@ const CreateTask: FC<ITaskProps> = ({ onAddTodo, todosData }) => {
       const isTitleExist = todosData.find((todo) => todo.title === fromattedTitle);
 
       if (isTitleExist) {
-        console.log('this title already exist, type another title');
         setError(true);
       } else {
         if (error) setError(false);
@@ -42,7 +41,6 @@ const CreateTask: FC<ITaskProps> = ({ onAddTodo, todosData }) => {
       const isTitleExist = todosData.find((todo) => todo.title === fromattedTitle);
 
       if (isTitleExist) {
-        console.log('this title already exist, type another title');
         setError(true);
       } else {
         if (error) setError(false);

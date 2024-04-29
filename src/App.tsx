@@ -46,13 +46,48 @@ const App = () => {
     ]);
   };
 
+  const handleRemoveTodo = (id: number) => {
+    const copyTodos = [...todo];
+
+    const remainingTodos = copyTodos.filter((todo) => todo.id !== id);
+
+    setTodos(remainingTodos);
+  };
+
+  const handleChangeTodo = (id: number) => {
+    const copy = [...todo];
+    const currentTodo = copy.find((todo) => todo.id === id);
+
+    if (currentTodo) {
+      currentTodo!.isCompleted = !currentTodo!.isCompleted;
+      setTodos(copy);
+    }
+  };
+
   return (
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<Tasks todosData={todo} />} />
-          <Route path={`${rootUrl}tasks`} element={<Tasks todosData={todo} />} />
-
+          <Route
+            index
+            element={
+              <Tasks
+                onRemoveTodo={handleRemoveTodo}
+                onChangeTodo={handleChangeTodo}
+                todosData={todo}
+              />
+            }
+          />
+          <Route
+            path={`${rootUrl}tasks`}
+            element={
+              <Tasks
+                onRemoveTodo={handleRemoveTodo}
+                onChangeTodo={handleChangeTodo}
+                todosData={todo}
+              />
+            }
+          />
           <Route
             path={`${rootUrl}create-task`}
             element={<CreateTask onAddTodo={handleAddTodo} todosData={todo} />}

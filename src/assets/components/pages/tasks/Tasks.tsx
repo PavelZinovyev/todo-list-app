@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import TodoItem from './todoItem/TodoItem';
 import styles from './task.module.scss';
 import { FC } from 'react';
@@ -9,29 +8,20 @@ interface ITodo {
   isCompleted: boolean;
 }
 
-interface TasksProps {
+interface RemoveTodo {
+  onRemoveTodo: (id: number) => void;
+}
+
+interface ChangeTodo {
+  onChangeTodo: (id: number) => void;
+}
+
+interface TasksProps extends RemoveTodo, ChangeTodo {
   todosData: ITodo[];
 }
 
-const Tasks: FC<TasksProps> = ({ todosData }) => {
-  const [todos, setTodos] = useState(todosData);
-
-  const handleChangeTodo = (id: number) => {
-    const copy = [...todos];
-    const currentTodo = copy.find((todo) => todo.id === id);
-
-    if (currentTodo) {
-      currentTodo!.isCompleted = !currentTodo!.isCompleted;
-      setTodos(copy);
-    }
-  };
-
-  const handleRemoveTodo = (id: number) => {
-    const copyTodos = [...todos];
-    setTodos(copyTodos.filter((todo) => todo.id !== id));
-  };
-
-  const reversedTodos = [...todos].reverse();
+const Tasks: FC<TasksProps> = ({ todosData, onRemoveTodo, onChangeTodo }) => {
+  const reversedTodos = [...todosData].reverse();
 
   return (
     <div className={styles.tasks}>
@@ -39,8 +29,8 @@ const Tasks: FC<TasksProps> = ({ todosData }) => {
         <TodoItem
           key={todo.id}
           todo={todo}
-          onRemoveTodo={handleRemoveTodo}
-          onChangeTodo={handleChangeTodo}
+          onRemoveTodo={onRemoveTodo}
+          onChangeTodo={onChangeTodo}
         />
       ))}
     </div>
